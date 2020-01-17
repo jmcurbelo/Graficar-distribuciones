@@ -14,7 +14,7 @@ dashboardPage(skin = "blue",
                       menuItem("T Student", tabName = "t"),
                       menuItem("Chi Cuadrada", tabName = "chisq"),
                       menuItem("F-Fisher", tabName = "f"),
-                      menuItem("uniforme", tabName = "uniforme"),
+                      menuItem("Uniforme", tabName = "uniforme"),
                       menuItem("Logística", tabName = "logistica"),
                       menuItem("Log-Normal", tabName = "lognormal"),
                       menuItem("Beta", tabName = "beta"),
@@ -81,13 +81,94 @@ dashboardPage(skin = "blue",
                               
                               ),
                       tabItem(tabName = "exponencial",
-                              h3("exponencial")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "rate_exp", label = "Scale", min = 0, max = 50, value = 1)
+                                      
+                                  ),
+                                  column(6,
+                                         
+                                         sliderInput(inputId = "min_max_exp", label = "Rango para graficar", min = 0, max = 30, value = c(0,5), step = 0.25)
+                                      
+                                  )
+                              ),
+                              fluidRow(
+                                  actionButton(inputId = "graf_exp", label = "Graficar")
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_exp")
+                              )
+                              ),
                       tabItem(tabName = "cauchy",
-                              h3("Cauchy")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                      sliderInput(inputId = "location_cauchy", label = "Location", min = -10, max = 10, value = 0)
+                                  ),
+                                  column(6,
+                                      sliderInput(inputId = "scale_cauchy", label = "Scale", min = 0.1, max = 10, value = 1)
+                                  )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_cauchy", label = "Rango para graficar", min = -30, max = 30, value = c(-5,5), step = 0.5)
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_cauchy", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_cauchy")
+                              )
+                              ),
                       tabItem(tabName = "t",
-                              h3("t student")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "df_t", label = "DF", min = 1, max = 50, value = 30)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "ncp_t", label = "NCP", min = -20, max = 20, value = 0)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_t", label = "Rango para graficar", min = -50, max = 50, value = c(-5,5))
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_t", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_t")
+                              )
+                              
+                              
+                              ),
                       tabItem(tabName = "chisq",
-                              h3("Chi cuadrada")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "df_chisq", label = "DF", min = 1, max = 50, value = 2)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "ncp_chisq", label = "NCP", min = 0, max = 50, value = 0)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_chisq", label = "Rango para graficar", min = 0, max = 50, value = c(-5,5))
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_chisq", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_chisq")
+                              )
+                              
+                              ),
                       tabItem(tabName = "f",
                               h3("F-Fisher")),
                       tabItem(tabName = "uniforme",
