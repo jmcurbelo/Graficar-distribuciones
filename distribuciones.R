@@ -13,4 +13,3 @@ curve(dpois(x, lambda = 2), 0, 100)
 curve(dbinom(x, size = 100, prob = 0.2), 0, 100)
 
 
-dgamma()
