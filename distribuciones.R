@@ -13,3 +13,9 @@ curve(dpois(x, lambda = 2), 0, 100)
 curve(dbinom(x, size = 100, prob = 0.2), 0, 100)
 
 
+p1 <- ggplot(data = data.frame(x = c(0, 1)), aes(x)) +
+    stat_function(fun = dbeta, n = 101, args = list(shape1 = 0.0001, shape2 = 0.0001), colour = "blue", lwd = 1) + ylab("") +
+    scale_y_continuous(breaks = NULL)
+p1
+
+
