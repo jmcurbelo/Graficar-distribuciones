@@ -170,19 +170,155 @@ dashboardPage(skin = "blue",
                               
                               ),
                       tabItem(tabName = "f",
-                              h3("F-Fisher")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                      sliderInput(inputId = "df1_f", label = "DF1", min = 1, max = 50, value = 1)
+                                  ),
+                                  column(6,
+                                      sliderInput(inputId = "df2_f", label = "DF2", min = 1, max = 50, value = 1)
+                                  )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                      sliderInput(inputId = "ncp_f", label = "NCP", min = 0, max = 50, value = 0)
+                                  ),
+                                  column(6,
+                                      sliderInput(inputId = "min_max_f", label = "Rango para graficar", min = 0, max = 50, value = c(0,10))
+                                  )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         actionButton(inputId = "graf_f", label = "Graficar")
+                                  )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_f")
+                              )
+                              ),
                       tabItem(tabName = "uniforme",
-                              h3("uniforme")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_u", label = "Valores mínimos y máximos", min = -50, max = 50, value = c(0,1))
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_u", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_u")
+                              )
+                              ),
                       tabItem(tabName = "logistica",
-                              h3("logistica")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "location_logis", label = "Location", min = -10, max = 10, value = 0)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "scale_logis", label = "Scale", min = 1, max = 20, value = 1)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_logis", label = "Rango para graficar", min = -50, max = 50, value = c(-5,5))
+                                         ),
+                                  column(6,
+                                      actionButton(inputId = "graf_logis", label = "Graficar")
+                                  )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_logis")
+                              )
+                              ),
                       tabItem(tabName = "lognormal",
-                              h3("Lognormal")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "meanlog", label = "meanlog", min = 0.0001, max = 50, value = 1)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "sdlog", label = "sdlog", min = 0.0001, max = 50, value = 1)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_lognormal", label = "Rango para graficar", min = 0, max = 100, value = c(0,5))
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_lognormal", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_lognormal")
+                              )
+                              ),
                       tabItem(tabName = "beta",
-                              h3("Beta")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "shape1_beta", label = "Shape 1", min = 0.0001, max = 20, value = 0.1)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "shape2_beta", label = "Shape 2", min = 0.0001, max = 20, value = 0.1)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "ncp_beta", label = "NCP", min = 0, 5, value = 0)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "min_max_beta", label = "Rango para graficar", min = 0, max = 1, value = c(0.1, 0.9), step = 0.01)
+                                         )
+                              ),
+                              fluidRow(
+                                  actionButton(inputId = "graf_beta", label = "Graficar")
+                                  
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_beta")
+                              )
+                              ),
                       tabItem(tabName = "poisson",
-                              h3("Poisson")),
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "lambda_pois", label = "Lambda", min = 0, max = 20, value = 1)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "min_max_pois", label = "Rango para graficar", min = -5, max = 100, value = c(-1,1))
+                                         )
+                              ),
+                              fluidRow(
+                                  actionButton(inputId = "graf_pois", label = "Graficar")
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_pois")
+                              )
+                              ),
                       tabItem(tabName = "binomial",
-                              h3("Binomial"))
+                              h3("Seleccione los hiperparámetros"),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "size_binomial", label = "size", min = 1, max = 50, value = 5)
+                                         ),
+                                  column(6,
+                                         sliderInput(inputId = "prob_binomial", label = "Prob", min = 0, max = 1, value = 0.5)
+                                         )
+                              ),
+                              fluidRow(
+                                  column(6,
+                                         sliderInput(inputId = "min_max_binomial", label = "Rango para graficar",min = -50, max = 50, value = c(-5,5))
+                                         ),
+                                  column(6,
+                                         actionButton(inputId = "graf_binomial", label = "Graficar")
+                                         )
+                              ),
+                              fluidRow(
+                                  plotOutput("graf_binomial")
+                              )
+                              )
                       
                   )
               )

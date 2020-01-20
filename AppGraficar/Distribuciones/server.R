@@ -52,5 +52,61 @@ shinyServer(function(input, output) {
     })
     
     
+    
+    observeEvent(input$graf_f, {
+        output$graf_f <- renderPlot({
+            curve(df(x, df1 = input$df1_f, df2 = input$df2_f, ncp = input$ncp_f), input$min_max_f[1], input$min_max_f[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_u, {
+        output$graf_u <- renderPlot({
+            curve(dunif(x, min = input$min_max_u[1], max = input$min_max_u[2]), input$min_max_u[1], input$min_max_u[2],xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_logis, {
+        output$graf_logis <- renderPlot({
+            curve(dlogis(x, location = input$location_logis, scale = input$scale_logis), input$min_max_logis[1], input$min_max_logis[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_lognormal, {
+        output$graf_lognormal <- renderPlot({
+            curve(dlnorm(x, meanlog = input$meanlog, sdlog = input$sdlog), input$min_max_lognormal[1], input$min_max_lognormal[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_beta, {
+        output$graf_beta <- renderPlot({
+            curve(dbeta(x, shape1 = input$shape1_beta, shape2 = input$shape2_beta, ncp = input$ncp_beta), input$min_max_beta[1], input$min_max_beta[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_pois, {
+        output$graf_pois <- renderPlot({
+            curve(dpois(x, lambda = input$lambda_pois), input$min_max_pois[1], input$min_max_pois[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
+    
+    observeEvent(input$graf_binomial, {
+        output$graf_binomial <- renderPlot({
+            curve(dbinom(x, size = input$size_binomial, prob = input$prob_binomial), input$min_max_binomial[1], input$min_max_binomial[2], xlab = "", ylab = "")
+        })
+    })
+    
+    
 
 })
