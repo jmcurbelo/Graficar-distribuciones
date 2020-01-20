@@ -1,5 +1,6 @@
 library(shinydashboard)
 library(shiny)
+library(ggplot2)
 
 
 dashboardPage(skin = "blue",
