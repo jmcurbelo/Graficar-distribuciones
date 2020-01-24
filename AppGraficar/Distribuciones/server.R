@@ -166,5 +166,77 @@ shinyServer(function(input, output) {
     })
     
     
+    
+    output$formula_gamma <- renderUI({
+        withMathJax("Función de densidad gamma: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_exponencial <- renderUI({
+        withMathJax("Función de densidad exponencial: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_cauchy <- renderUI({
+        withMathJax("Función de densidad cuachy: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_t <- renderUI({
+        withMathJax("Función de densidad t: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_chisq <- renderUI({
+        withMathJax("Función de densidad Chi Cuadrada: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_f <- renderUI({
+        withMathJax("Función de densidad F de Fisher: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_uniforme <- renderUI({
+        withMathJax("Función de densidad uniforme: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_logistica <- renderUI({
+        withMathJax("Función de densidad logistica: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_lognormal <- renderUI({
+        withMathJax("Función de densidad lognormal: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_beta <- renderUI({
+        withMathJax("Función de densidad beta: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_poisson <- renderUI({
+        withMathJax("Función de densidad Poisson: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
+    
+    output$formula_binomial <- renderUI({
+        withMathJax("Función de densidad binomial: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
 
 })
