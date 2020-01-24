@@ -161,5 +161,10 @@ shinyServer(function(input, output) {
     })
     
     
+    output$formula_normal <- renderUI({
+        withMathJax("Función de densidad normal: $$f(x)=\\frac{a}{b}\\pi$$")
+    })
+    
+    
 
 })

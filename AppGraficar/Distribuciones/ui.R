@@ -27,10 +27,12 @@ dashboardPage(skin = "blue",
               dashboardBody(
                   tabItems(
                       tabItem(tabName = "normal",
+                              withMathJax(),
                               tabsetPanel(type = "tabs",
                                           
                                           tabPanel("Función de densidad",
-                                                   h3("aqui va funcion de densidad")
+                                                   h3("aqui va funcion de densidad"),
+                                                   uiOutput("formula_normal")
                                                    ),
                                           tabPanel("Gráfica",
                                                    fluidRow(
