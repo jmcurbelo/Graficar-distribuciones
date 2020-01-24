@@ -29,62 +29,85 @@ ui <- dashboardPage(skin = "blue",
                     dashboardBody(
                         tabItems(
                             tabItem(tabName = "normal",
-                                    fluidRow(
-                                        h3("Seleccione los hiperparámetros"),
-                                        column(6,
-                                               sliderInput(inputId = "media_normal", label = "Media", min = -50, max = 50, value = 0)
-                                               
-                                        ),
-                                        column(6,
-                                               sliderInput(inputId = "sd_normal", label = "SD", min = 0, max = 20, value = 1)
-                                        )
-                                    ),
-                                    fluidRow(
-                                        column(6,
-                                               sliderInput(inputId = "min_max_normal", label = "Rango para graficar", min = -50, max = 50, value = c(-5,5)),
-                                               
-                                        ),
-                                        
-                                        column(4,
-                                               actionButton(inputId = "graf_normal", label = "Graficar")
-                                        )
-                                    ),
-                                    fluidRow(
-                                        plotOutput("graf_normal")
+                                    withMathJax(),
+                                    tabsetPanel(type = "tabs",
+                                                
+                                                tabPanel("Función de densidad",
+                                                         h3("aqui va funcion de densidad"),
+                                                         uiOutput("formula_normal")
+                                                ),
+                                                tabPanel("Gráfica",
+                                                         fluidRow(
+                                                             h3("Seleccione los Parámetros"),
+                                                             column(6,
+                                                                    sliderInput(inputId = "media_normal", label = "Media", min = -50, max = 50, value = 0)
+                                                                    
+                                                             ),
+                                                             column(6,
+                                                                    sliderInput(inputId = "sd_normal", label = "SD", min = 0, max = 20, value = 1)
+                                                             )
+                                                         ),
+                                                         fluidRow(
+                                                             column(6,
+                                                                    sliderInput(inputId = "min_max_normal", label = "Rango para graficar", min = -50, max = 50, value = c(-5,5)),
+                                                                    
+                                                             ),
+                                                             
+                                                             column(4,
+                                                                    actionButton(inputId = "graf_normal", label = "Graficar")
+                                                             )
+                                                         ),
+                                                         fluidRow(
+                                                             plotOutput("graf_normal")
+                                                         )
+                                                )
+                                                
                                     )
+                                    
                                     
                                     
                             ),
                             tabItem(tabName = "gamma",
-                                    h3("Seleccione los hiperparámetros"),
-                                    fluidRow(
-                                        column(6,
-                                               sliderInput(inputId = "shape_gamma", label = "Shape", min = 0, max = 50, value = 1)
-                                               
-                                        ),
-                                        column(6,
-                                               sliderInput(inputId = "rate_gamma", label = "Rate", min = 0, max = 50, value = 1)
-                                               
-                                        )
-                                        
-                                    ),
-                                    fluidRow(
-                                        column(6,
-                                               sliderInput(inputId = "min_max_gamma", label = "Rango para graficar", min = 0, max = 50, value = c(-5,5))
-                                               
-                                        ),
-                                        column(6,
-                                               actionButton(inputId = "graf_gamma", label = "Graficar")
-                                        )
-                                        
-                                    ),
-                                    fluidRow(
-                                        plotOutput("graf_gamma")
+                                    tabsetPanel(type = "tabs",
+                                                tabPanel("Función de densidad",
+                                                         h3("funcion de densidad")
+                                                ),
+                                                tabPanel("Gráfica",
+                                                         
+                                                         h3("Seleccione los Parámetros"),
+                                                         fluidRow(
+                                                             column(6,
+                                                                    sliderInput(inputId = "shape_gamma", label = "Shape", min = 0, max = 50, value = 1)
+                                                                    
+                                                             ),
+                                                             column(6,
+                                                                    sliderInput(inputId = "rate_gamma", label = "Rate", min = 0, max = 50, value = 1)
+                                                                    
+                                                             )
+                                                             
+                                                         ),
+                                                         fluidRow(
+                                                             column(6,
+                                                                    sliderInput(inputId = "min_max_gamma", label = "Rango para graficar", min = 0, max = 50, value = c(-5,5))
+                                                                    
+                                                             ),
+                                                             column(6,
+                                                                    actionButton(inputId = "graf_gamma", label = "Graficar")
+                                                             )
+                                                             
+                                                         ),
+                                                         fluidRow(
+                                                             plotOutput("graf_gamma")
+                                                         )
+                                                         
+                                                )
+                                                
                                     )
+                                    
                                     
                             ),
                             tabItem(tabName = "exponencial",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
                                                sliderInput(inputId = "rate_exp", label = "Scale", min = 0, max = 50, value = 1)
@@ -104,10 +127,10 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "cauchy",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "location_cauchy", label = "Location", min = -10, max = 10, value = 0)
+                                               sliderInput(inputId = "location_cauchy", label = "Localización", min = -10, max = 10, value = 0)
                                         ),
                                         column(6,
                                                sliderInput(inputId = "scale_cauchy", label = "Scale", min = 0.1, max = 10, value = 1)
@@ -126,13 +149,13 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "t",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "df_t", label = "DF", min = 1, max = 50, value = 30)
+                                               sliderInput(inputId = "df_t", label = "GL", min = 1, max = 50, value = 30)
                                         ),
                                         column(6,
-                                               sliderInput(inputId = "ncp_t", label = "NCP", min = -20, max = 20, value = 0)
+                                               sliderInput(inputId = "ncp_t", label = "PNC", min = -20, max = 20, value = 0)
                                         )
                                     ),
                                     fluidRow(
@@ -150,13 +173,13 @@ ui <- dashboardPage(skin = "blue",
                                     
                             ),
                             tabItem(tabName = "chisq",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "df_chisq", label = "DF", min = 1, max = 50, value = 2)
+                                               sliderInput(inputId = "df_chisq", label = "GL", min = 1, max = 50, value = 2)
                                         ),
                                         column(6,
-                                               sliderInput(inputId = "ncp_chisq", label = "NCP", min = 0, max = 50, value = 0)
+                                               sliderInput(inputId = "ncp_chisq", label = "PNC", min = 0, max = 50, value = 0)
                                         )
                                     ),
                                     fluidRow(
@@ -173,18 +196,18 @@ ui <- dashboardPage(skin = "blue",
                                     
                             ),
                             tabItem(tabName = "f",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "df1_f", label = "DF1", min = 1, max = 50, value = 1)
+                                               sliderInput(inputId = "df1_f", label = "GL1", min = 1, max = 50, value = 1)
                                         ),
                                         column(6,
-                                               sliderInput(inputId = "df2_f", label = "DF2", min = 1, max = 50, value = 1)
+                                               sliderInput(inputId = "df2_f", label = "GL2", min = 1, max = 50, value = 1)
                                         )
                                     ),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "ncp_f", label = "NCP", min = 0, max = 50, value = 0)
+                                               sliderInput(inputId = "ncp_f", label = "PNC", min = 0, max = 50, value = 0)
                                         ),
                                         column(6,
                                                sliderInput(inputId = "min_max_f", label = "Rango para graficar", min = 0, max = 50, value = c(0,10))
@@ -200,7 +223,7 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "uniforme",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
                                                sliderInput(inputId = "min_max_u", label = "Valores mínimos y máximos", min = -50, max = 50, value = c(0,1))
@@ -214,10 +237,10 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "logistica",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "location_logis", label = "Location", min = -10, max = 10, value = 0)
+                                               sliderInput(inputId = "location_logis", label = "Localización", min = -10, max = 10, value = 0)
                                         ),
                                         column(6,
                                                sliderInput(inputId = "scale_logis", label = "Scale", min = 1, max = 20, value = 1)
@@ -236,7 +259,7 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "lognormal",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
                                                sliderInput(inputId = "meanlog", label = "meanlog", min = 0.0001, max = 50, value = 1)
@@ -258,7 +281,7 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "beta",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
                                                sliderInput(inputId = "shape1_beta", label = "Shape 1", min = 0.0001, max = 20, value = 0.1)
@@ -269,7 +292,7 @@ ui <- dashboardPage(skin = "blue",
                                     ),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "ncp_beta", label = "NCP", min = 0, 5, value = 0)
+                                               sliderInput(inputId = "ncp_beta", label = "PNC", min = 0, 5, value = 0)
                                         ),
                                         column(6,
                                                sliderInput(inputId = "min_max_beta", label = "Rango para graficar", min = 0, max = 1, value = c(0.1, 0.9), step = 0.01)
@@ -284,7 +307,7 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "poisson",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
                                                sliderInput(inputId = "lambda_pois", label = "Lambda", min = 0, max = 20, value = 1)
@@ -301,13 +324,13 @@ ui <- dashboardPage(skin = "blue",
                                     )
                             ),
                             tabItem(tabName = "binomial",
-                                    h3("Seleccione los hiperparámetros"),
+                                    h3("Seleccione los Parámetros"),
                                     fluidRow(
                                         column(6,
-                                               sliderInput(inputId = "size_binomial", label = "size", min = 1, max = 50, value = 5)
+                                               sliderInput(inputId = "size_binomial", label = "Tamaño", min = 1, max = 50, value = 5)
                                         ),
                                         column(6,
-                                               sliderInput(inputId = "prob_binomial", label = "Prob", min = 0, max = 1, value = 0.5)
+                                               sliderInput(inputId = "prob_binomial", label = "Probabilidad", min = 0, max = 1, value = 0.5)
                                         )
                                     ),
                                     fluidRow(
@@ -326,7 +349,6 @@ ui <- dashboardPage(skin = "blue",
                         )
                     )
 )
-
 
 
 
@@ -485,6 +507,11 @@ server <- shinyServer(function(input, output) {
                 ylab("")+
                 scale_y_continuous(breaks = NULL)
         })
+    })
+    
+    
+    output$formula_normal <- renderUI({
+        withMathJax("Función de densidad normal: $$f(x)=\\frac{a}{b}\\pi$$")
     })
     
     
