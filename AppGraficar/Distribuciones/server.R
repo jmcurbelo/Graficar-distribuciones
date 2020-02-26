@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_normal,{
         output$graf_normal <-  renderPlot({
-            # curve(dnorm(x, mean = input$media_normal, sd = input$sd_normal), input$min_max_normal[1], input$min_max_normal[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_normal[1], input$min_max_normal[2])), aes(x))+
                 stat_function(fun = dnorm, n=101, args = list(mean = input$media_normal, sd = input$sd_normal), colour = "blue", lwd = 1)+
                 ylab("")+
