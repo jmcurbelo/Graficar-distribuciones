@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_gamma, {
         output$graf_gamma <- renderPlot({
-            # curve(dgamma(x, shape = input$shape_gamma, rate = input$rate_gamma), input$min_max_gamma[1], input$min_max_gamma[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_gamma[1], input$min_max_gamma[2])), aes(x))+
                 stat_function(fun = dgamma, n=101, args = list(shape = input$shape_gamma, rate = input$rate_gamma), colour = "blue", lwd = 1)+
                 ylab("")+
