@@ -31,7 +31,6 @@ dashboardPage(skin = "blue",
                               tabsetPanel(type = "tabs",
                                           
                                           tabPanel("Función de densidad",
-                                                   h3("aqui va funcion de densidad"),
                                                    uiOutput("formula_normal")
                                                    ),
                                           tabPanel("Gráfica",
@@ -69,7 +68,6 @@ dashboardPage(skin = "blue",
                               withMathJax(),
                               tabsetPanel(type = "tabs",
                                           tabPanel("Función de densidad",
-                                                   h3("funcion de densidad"),
                                                    uiOutput("formula_gamma")
                                                    ),
                                           tabPanel("Gráfica",
