@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_exp, {
         output$graf_exp <- renderPlot({
-            # curve(dexp(x, rate = input$rate_exp), input$min_max_exp[1], input$min_max_exp[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_exp[1], input$min_max_exp[2])), aes(x))+
                 stat_function(fun = dexp, n=101, args = list(rate = input$rate_exp), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -55,7 +55,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_cauchy, {
         output$graf_cauchy <- renderPlot({
-            # curve(dcauchy(x, location = input$location_cauchy, scale = input$scale_cauchy), input$min_max_cauchy[1], input$min_max_cauchy[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_cauchy[1], input$min_max_cauchy[2])), aes(x))+
                 stat_function(fun = dcauchy, n=101, args = list(location = input$location_cauchy, scale = input$scale_cauchy), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -67,11 +67,12 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_t, {
         output$graf_t <- renderPlot({
-            # curve(dt(x, df = input$df_t, ncp = input$ncp_t), input$min_max_t[1], input$min_max_t[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_t[1], input$min_max_t[2])), aes(x))+
                 stat_function(fun = dt, n=101, args = list(df = input$df_t, ncp = input$ncp_t), colour = "blue", lwd = 1)+
                 ylab("")+
                 scale_y_continuous(breaks = NULL)
+                #geom_vline(aes(xintercept=input$ncp_t))
         })
     })
     
@@ -79,7 +80,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_chisq, {
         output$graf_chisq <- renderPlot({
-            # curve(dchisq(x, df = input$df_chisq, ncp = input$ncp_chisq), input$min_max_chisq[1], input$min_max_chisq[2], xlab = "", ylab = "")
+           
             ggplot(data = data.frame(x = c(input$min_max_chisq[1], input$min_max_chisq[2])), aes(x))+
                 stat_function(fun = dchisq, n=101, args = list(df = input$df_chisq, ncp = input$ncp_chisq), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -91,11 +92,12 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_f, {
         output$graf_f <- renderPlot({
-            # curve(df(x, df1 = input$df1_f, df2 = input$df2_f, ncp = input$ncp_f), input$min_max_f[1], input$min_max_f[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_f[1], input$min_max_f[2])), aes(x))+
                 stat_function(fun = df, n=101, args = list(df1 = input$df1_f, df2 = input$df2_f, ncp = input$ncp_f), colour = "blue", lwd = 1)+
                 ylab("")+
                 scale_y_continuous(breaks = NULL)
+                #geom_vline(xintercept = (input$df2_f)/(input$df2_f-2))
         })
     })
     
@@ -103,11 +105,14 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_u, {
         output$graf_u <- renderPlot({
-            # curve(dunif(x, min = input$min_max_u[1], max = input$min_max_u[2]), input$min_max_u[1], input$min_max_u[2],xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_u[1], input$min_max_u[2])), aes(x))+
                 stat_function(fun = dunif, n=101, args = list(min = input$min_max_u[1], max = input$min_max_u[2]), colour = "blue", lwd = 1)+
                 ylab("")+
-                scale_y_continuous(breaks = NULL)
+                scale_y_continuous(breaks = NULL)+
+                geom_vline(aes(xintercept=(input$min_max_u[1]+input$min_max_u[2])/2, color="media"), size=1)+
+                scale_color_manual(name="", values=c(media="black"))+
+                theme(legend.position = c(0.95,0.95))
         })
     })
     
@@ -115,11 +120,14 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_logis, {
         output$graf_logis <- renderPlot({
-            # curve(dlogis(x, location = input$location_logis, scale = input$scale_logis), input$min_max_logis[1], input$min_max_logis[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_logis[1], input$min_max_logis[2])), aes(x))+
                 stat_function(fun = dlogis, n=101, args = list(location = input$location_logis, scale = input$scale_logis), colour = "blue", lwd = 1)+
                 ylab("")+
-                scale_y_continuous(breaks = NULL)
+                scale_y_continuous(breaks = NULL)+
+                geom_vline(aes(xintercept=input$location_logis, color="media"), size = 1)+
+                scale_color_manual(name="", values=c(media="black"))+
+                theme(legend.position = c(0.95,0.95))
         })
     })
     
@@ -127,11 +135,12 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_lognormal, {
         output$graf_lognormal <- renderPlot({
-            # curve(dlnorm(x, meanlog = input$meanlog, sdlog = input$sdlog), input$min_max_lognormal[1], input$min_max_lognormal[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_lognormal[1], input$min_max_lognormal[2])), aes(x))+
                 stat_function(fun = dlnorm, n=101, args = list(meanlog = input$meanlog, sdlog = input$sdlog), colour = "blue", lwd = 1)+
                 ylab("")+
                 scale_y_continuous(breaks = NULL)
+                #geom_vline(xintercept = exp(  input$meanlog + (1/2)*(input$sdlog)^2  ))
         })
     })
     
@@ -143,7 +152,10 @@ shinyServer(function(input, output) {
             ggplot(data = data.frame(x = c(input$min_max_beta[1], input$min_max_beta[2])), aes(x))+
                 stat_function(fun = dbeta, n=101, args = list(shape1 = input$shape1_beta, shape2 = input$shape2_beta, ncp = input$ncp_beta), colour = "blue", lwd = 1)+
                 ylab("")+
-                scale_y_continuous(breaks = NULL)
+                scale_y_continuous(breaks = NULL)+
+                geom_vline(aes(xintercept = input$shape1_beta/(input$shape1_beta + input$shape2_beta), color="media"), size=1)+
+                scale_color_manual(name="", values=c(media="black"))+
+                theme(legend.position = c(0.95,0.95))
         })
     })
     
@@ -210,7 +222,7 @@ shinyServer(function(input, output) {
     
     
     output$formula_f <- renderUI({
-        withMathJax("Función de densidad F de Fisher: $$f(x)=\\frac{\\Gamma\\left[\\frac{m+n}{2}\\right]}{\\Gamma\\left(\\frac{m}{2}\\right)\\Gamma\\left(\\frac{n}{2}\\right)}\\left(\\frac{m}{n}\\right)^{\\frac{m}{2}}\\,\\,\\,para\\,\\,\\,m,n=1,2,3,...$$")
+        withMathJax("Función de densidad F de Fisher: $$f(x)=\\frac{\\Gamma\\left[\\frac{m+n}{2}\\right]}{\\Gamma\\left(\\frac{m}{2}\\right)\\Gamma\\left(\\frac{n}{2}\\right)}\\left(\\frac{m}{n}\\right)^{\\frac{m}{2}}\\frac{x^{\\frac{m-2}{2}}}{\\left[1+\\frac{m}{n}x\\right]^{\\frac{m+n}{2}}}\\,\\,\\,para\\,\\,\\,m,n=1,2,3,...$$")
     })
     
     
