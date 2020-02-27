@@ -1,0 +1,12 @@
+name: Distribuciones
+title: Distribuciones
+username:
+account: jmcurbelo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1874609
+bundleId: 2835070
+url: https://jmcurbelo.shinyapps.io/Distribuciones/
+when: 1582826415.79629
+asMultiple: FALSE
+asStatic: FALSE
