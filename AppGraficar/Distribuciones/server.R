@@ -148,7 +148,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_beta, {
         output$graf_beta <- renderPlot({
-            # curve(dbeta(x, shape1 = input$shape1_beta, shape2 = input$shape2_beta, ncp = input$ncp_beta), input$min_max_beta[1], input$min_max_beta[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_beta[1], input$min_max_beta[2])), aes(x))+
                 stat_function(fun = dbeta, n=101, args = list(shape1 = input$shape1_beta, shape2 = input$shape2_beta, ncp = input$ncp_beta), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -163,7 +163,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_pois, {
         output$graf_pois <- renderPlot({
-            # curve(dpois(x, lambda = input$lambda_pois), input$min_max_pois[1], input$min_max_pois[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_pois[1], input$min_max_pois[2])), aes(x))+
                 stat_function(fun = dpois, n=101, args = list(lambda = input$lambda_pois), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -175,7 +175,7 @@ shinyServer(function(input, output) {
     
     observeEvent(input$graf_binomial, {
         output$graf_binomial <- renderPlot({
-            # curve(dbinom(x, size = input$size_binomial, prob = input$prob_binomial), input$min_max_binomial[1], input$min_max_binomial[2], xlab = "", ylab = "")
+            
             ggplot(data = data.frame(x = c(input$min_max_binomial[1], input$min_max_binomial[2])), aes(x))+
                 stat_function(fun = dbinom, n=101, args = list(size = input$size_binomial, prob = input$prob_binomial), colour = "blue", lwd = 1)+
                 ylab("")+
@@ -186,79 +186,79 @@ shinyServer(function(input, output) {
     
     
     output$formula_normal <- renderUI({
-        withMathJax("Función de densidad normal: $$f(x)=\\frac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^{2}}{2\\sigma^{2}}}\\,\\,\\,para\\,\\,\\,-\\infty<\\mu<\\infty;\\,\\sigma>0$$")
+        withMathJax("Función de densidad normal: $$f(x)=\\frac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^{2}}{2\\sigma^{2}}}\\,\\,\\,para\\,\\,\\,-\\infty<\\mu<\\infty;\\,\\sigma>0$$ Media: $$\\mu$$ Varianza: $$\\sigma^{2}$$")
     })
     
     
     
     output$formula_gamma <- renderUI({
-        withMathJax("Función de densidad gamma: $$f(x)=\\frac{\\lambda^{r}}{\\Gamma(r)}x^{r-1}e^{-\\lambda x}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,r>0;\\,x>0$$")
+        withMathJax("Función de densidad gamma: $$f(x)=\\frac{\\lambda^{r}}{\\Gamma(r)}x^{r-1}e^{-\\lambda x}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,r>0;\\,x>0$$ Media: $$\\frac{r}{\\lambda}$$ Varinza: $$\\frac{r}{\\lambda^{2}}$$")
     })
     
     
     
     output$formula_exponencial <- renderUI({
-        withMathJax("Función de densidad exponencial: $$f(x)=\\lambda e^{-\\lambda x}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,x>0$$")
+        withMathJax("Función de densidad exponencial: $$f(x)=\\lambda e^{-\\lambda x}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,x>0$$ Media: $$\\frac{1}{\\lambda}$$ Varianza: $$\\frac{1}{\\lambda^{2}}$$")
     })
     
     
     
     output$formula_cauchy <- renderUI({
-        withMathJax("Función de densidad cuachy: $$f(x)=\\frac{1}{\\pi B\\left\\{ 1+\\left[\\frac{x-\\alpha}{\\beta}\\right]^{2}\\right\\} }\\,\\,\\,para\\,\\,\\,-\\infty<\\alpha<\\infty;\\,\\beta>0$$")
+        withMathJax("Función de densidad cuachy: $$f(x)=\\frac{1}{\\pi B\\left\\{ 1+\\left[\\frac{x-\\alpha}{\\beta}\\right]^{2}\\right\\} }\\,\\,\\,para\\,\\,\\,-\\infty<\\alpha<\\infty;\\,\\beta>0$$ Media: $$No\\,existe$$ Varianza: $$No\\,existe$$")
     })
     
     
     
     output$formula_t <- renderUI({
-        withMathJax("Función de densidad t: $$f(x)=\\frac{\\Gamma\\left[\\frac{k+1}{2}\\right]}{\\Gamma\\left(\\frac{k}{2}\\right)}\\frac{1}{\\sqrt{k\\pi}}\\frac{1}{\\left(1+\\frac{x^{2}}{k}\\right)^{\\frac{k+1}{2}}}\\,\\,\\,para\\,\\,\\,k>0$$")
+        withMathJax("Función de densidad t: $$f(x)=\\frac{\\Gamma\\left[\\frac{k+1}{2}\\right]}{\\Gamma\\left(\\frac{k}{2}\\right)}\\frac{1}{\\sqrt{k\\pi}}\\frac{1}{\\left(1+\\frac{x^{2}}{k}\\right)^{\\frac{k+1}{2}}}\\,\\,\\,para\\,\\,\\,k>0$$ Media: $$\\mu=0\\,\\,\\,para\\,\\,\\,k>1$$ Varianza: $$\\frac{k}{k-2}$$")
     })
     
     
     
     output$formula_chisq <- renderUI({
-        withMathJax("Función de densidad Chi Cuadrada: $$f(x)=\\frac{1}{\\Gamma\\left(\\frac{k}{2}\\right)}\\left(\\frac{1}{2}\\right)^{\\frac{k}{2}}x^{\\frac{k}{2}-1}e^{-\\frac{1}{2}x}\\,\\,\\,para\\,\\,\\,x>0;\\,k=1,2,...$$")
+        withMathJax("Función de densidad Chi Cuadrada: $$f(x)=\\frac{1}{\\Gamma\\left(\\frac{k}{2}\\right)}\\left(\\frac{1}{2}\\right)^{\\frac{k}{2}}x^{\\frac{k}{2}-1}e^{-\\frac{1}{2}x}\\,\\,\\,para\\,\\,\\,x>0;\\,k=1,2,...$$ Media: $$k$$ Varianza: $$2k$$")
     })
     
     
     
     output$formula_f <- renderUI({
-        withMathJax("Función de densidad F de Fisher: $$f(x)=\\frac{\\Gamma\\left[\\frac{m+n}{2}\\right]}{\\Gamma\\left(\\frac{m}{2}\\right)\\Gamma\\left(\\frac{n}{2}\\right)}\\left(\\frac{m}{n}\\right)^{\\frac{m}{2}}\\frac{x^{\\frac{m-2}{2}}}{\\left[1+\\frac{m}{n}x\\right]^{\\frac{m+n}{2}}}\\,\\,\\,para\\,\\,\\,m,n=1,2,3,...$$")
+        withMathJax("Función de densidad F de Fisher: $$f(x)=\\frac{\\Gamma\\left[\\frac{m+n}{2}\\right]}{\\Gamma\\left(\\frac{m}{2}\\right)\\Gamma\\left(\\frac{n}{2}\\right)}\\left(\\frac{m}{n}\\right)^{\\frac{m}{2}}\\frac{x^{\\frac{m-2}{2}}}{\\left[1+\\frac{m}{n}x\\right]^{\\frac{m+n}{2}}}\\,\\,\\,para\\,\\,\\,m,n=1,2,3,...$$ Media: $$\\frac{n}{n-2}\\,\\,\\,para\\,\\,\\,n>2$$ Varianza: $$\\frac{2n^{2}(m+n-2)}{m(n-2)^{2}(n-4)}\\,\\,\\,para\\,\\,\\,n>4$$")
     })
     
     
     
     output$formula_uniforme <- renderUI({
-        withMathJax("Función de densidad uniforme: $$f(x)=\\frac{1}{b-a}\\,\\,\\,para\\,\\,\\,-\\infty<a<b<\\infty;\\,a\\leq x\\leq b$$")
+        withMathJax("Función de densidad uniforme: $$f(x)=\\frac{1}{b-a}\\,\\,\\,para\\,\\,\\,-\\infty<a<b<\\infty;\\,a\\leq x\\leq b$$ Media: $$\\frac{a+b}{2}$$ Varianza: $$\\frac{(b-a)^{2}}{12}$$")
     })
     
     
     
     output$formula_logistica <- renderUI({
-        withMathJax("Función de densidad logistica: $$F(x)=\\left[1+e^{-\\frac{(x-\\alpha)}{\\beta}}\\right]^{-1}\\,\\,\\,para\\,\\,\\,-\\infty<\\alpha<\\infty;\\,\\beta>0$$")
+        withMathJax("Función de densidad logistica: $$F(x)=\\left[1+e^{-\\frac{(x-\\alpha)}{\\beta}}\\right]^{-1}\\,\\,\\,para\\,\\,\\,-\\infty<\\alpha<\\infty;\\,\\beta>0$$ Media: $$\\alpha$$ Varianza: $$\\frac{\\beta^{2}\\pi^{2}}{3}$$")
     })
     
     
     
     output$formula_lognormal <- renderUI({
-        withMathJax("Función de densidad lognormal: $$f(x)=\\frac{1}{x\\sqrt{2\\pi}\\sigma}e^{-\\frac{(log_{e}x-\\mu)^{2}}{2\\sigma^{2}}\\,\\,\\,para\\,\\,\\,-\\infty<\\mu<\\infty;\\,\\sigma>0;\\,x>0}$$")
+        withMathJax("Función de densidad lognormal: $$f(x)=\\frac{1}{x\\sqrt{2\\pi}\\sigma}e^{-\\frac{(log_{e}x-\\mu)^{2}}{2\\sigma^{2}}\\,\\,\\,para\\,\\,\\,-\\infty<\\mu<\\infty;\\,\\sigma>0;\\,x>0}$$ Media: $$exp[\\mu+\\frac{1}{2}\\sigma^{2}]$$ Varianza: $$exp[2\\mu+2\\sigma^{2}]-exp[2\\mu+\\sigma^{2}]$$")
     })
     
     
     
     output$formula_beta <- renderUI({
-        withMathJax("Función de densidad beta: $$f(x)=\\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}\\,\\,\\,para\\,\\,\\,a>0;\\,b>0;\\,0<x<1$$")
+        withMathJax("Función de densidad beta: $$f(x)=\\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}\\,\\,\\,para\\,\\,\\,a>0;\\,b>0;\\,0<x<1$$ Media: $$\\frac{a}{a+b}$$ Varinza: $$\\frac{ab}{(a+b+1)(a+b)^{2}}$$")
     })
     
     
     
     output$formula_poisson <- renderUI({
-        withMathJax("Función de densidad Poisson: $$f(x)=\\frac{e^{-\\lambda}\\lambda^{x}}{x!}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,x=0,1,2,...$$")
+        withMathJax("Función de densidad Poisson: $$f(x)=\\frac{e^{-\\lambda}\\lambda^{x}}{x!}\\,\\,\\,para\\,\\,\\,\\lambda>0;\\,x=0,1,2,...$$ Media: $$\\lambda$$ Varianza: $$\\lambda$$")
     })
     
     
     
     output$formula_binomial <- renderUI({
-        withMathJax("Función de densidad binomial: $$f(x)=\\binom{n}{x}p^{x}q^{n-x}\\,\\,\\,para\\,\\,\\,0\\leq p\\leq1;\\,n=1,2,3...;\\,q=1-p;\\,x=0,1,...,n$$")
+        withMathJax("Función de densidad binomial: $$f(x)=\\binom{n}{x}p^{x}q^{n-x}\\,\\,\\,para\\,\\,\\,0\\leq p\\leq1;\\,n=1,2,3...;\\,q=1-p;\\,x=0,1,...,n$$ Media: $$np$$ Varianza: $$npq$$")
     })
     
     
